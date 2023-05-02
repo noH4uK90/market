@@ -1,9 +1,9 @@
 package com.example.market.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -27,23 +27,25 @@ fun ProductCard(
             .fillMaxWidth()
             .padding(10.dp)
     ) {
-        Row {
-            Log.wtf("image", product.image.toString())
-            Log.i("space", "space")
+        Row(
+            modifier = modifier.fillMaxHeight().padding(10.dp)
+        ) {
             if (product.image.isNullOrBlank())
                 Image(imageVector = Icons.Default.Warning, contentDescription = "Фотография продукта")
             else
                 Image(bitmap = product.image.toBitmap().asImageBitmap(), contentDescription = "Фотография продукта")
         }
         Row {
-            Column {
+            Column(
+                modifier = modifier.padding(10.dp)
+            ) {
                 Text(text = product.name.name)
 
                 Text(text = product.description)
 
-                Text(text = product.price.toString())
+                Text(text = "Цена: ${product.price}")
 
-                Text(text = product.count.toString())
+                Text(text = "Количество на складе: ${product.count}")
             }
         }
     }
