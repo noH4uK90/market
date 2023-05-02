@@ -11,6 +11,8 @@ import com.example.market.ui.screens.AuthorizationViewModel
 import com.example.market.ui.screens.AuthorizeScreen
 import com.example.market.ui.screens.ProductScreen
 import com.example.market.ui.screens.ProductViewModel
+import com.example.market.ui.screens.RegistrationScreen
+import com.example.market.ui.screens.RegistrationViewModel
 
 @Composable
 fun MainNavigation(
@@ -18,6 +20,7 @@ fun MainNavigation(
     navController: NavHostController = rememberNavController(),
     authorizationViewModel: AuthorizationViewModel = viewModel(factory = AuthorizationViewModel.Factory),
     productViewModel: ProductViewModel = viewModel(factory = ProductViewModel.Factory),
+    registrationViewModel: RegistrationViewModel = viewModel(factory = RegistrationViewModel.Factory),
     startDestination: String = "AuthorizationScreen"
 ) {
     NavHost(
@@ -30,6 +33,9 @@ fun MainNavigation(
         }
         composable("ProductScreen") {
             ProductScreen(navController = navController, productUiState = productViewModel.productUiState, retryAction = productViewModel::getProducts)
+        }
+        composable("RegistrationScreen") {
+            RegistrationScreen(navController = navController, viewModel = registrationViewModel)
         }
     }
 }
