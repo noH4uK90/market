@@ -2,6 +2,7 @@ package com.example.market.network
 
 import com.example.market.dto.UserDto
 import com.example.market.models.User
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -17,7 +18,7 @@ interface UserApiService {
     suspend fun getUser(@Path("id") id: Int): UserDto
 
     @GET("User/authorize")
-    suspend fun authorizeUser(@Query("login") login: String, @Query("password") password: String): Int
+    suspend fun authorizeUser(@Query("login") login: String, @Query("password") password: String): Response<Int>
 
     @POST("User")
     suspend fun addUser(@Body user:User)
